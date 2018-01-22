@@ -1,0 +1,2 @@
+# 福利api服务
+基于python的flask框架构建的restful风格的api服务
