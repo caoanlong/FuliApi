@@ -1,0 +1,5 @@
+HOSTNAME = '108.61.217.78'
+DATABASE = 'test'
+USERNAME = 'root'
+PASSWORD = 'a1989204'
+DB_URI = 'mysql://{}:{}@{}/{}'.format(USERNAME, PASSWORD, HOSTNAME, DATABASE)

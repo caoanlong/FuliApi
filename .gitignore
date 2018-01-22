@@ -1,2 +1,10 @@
 .DS_Store
+*.pyc
+*.pyo
+*.whoosh
+*.db
 venv
+dist
+_mailinglist/*
+*.egg-info
+.idea/
