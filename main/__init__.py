@@ -2,12 +2,17 @@
 
 from flask import Flask, request, jsonify
 from routers.api.image import image
-from routers.admin import admin
+from ext import db
 
 app = Flask(__name__)
 app.config.from_object('config')
 app.register_blueprint(image, url_prefix='/api/image')
-app.register_blueprint(admin)
+db.__init__(app)
+
+with app.app_context():
+    db.drop_all()
+    db.create_all()
+
 
 @app.route('/')
 def user():
