@@ -1,5 +1,5 @@
 HOSTNAME = '108.61.217.78'
-DATABASE = 'test'
+DATABASE = 'fuli'
 USERNAME = 'root'
 PASSWORD = 'a1989204'
-DB_URI = 'mysql://{}:{}@{}/{}'.format(USERNAME, PASSWORD, HOSTNAME, DATABASE)
+DB_URI = 'mysql://{}:{}@{}/{}?charset=utf8'.format(USERNAME, PASSWORD, HOSTNAME, DATABASE)
