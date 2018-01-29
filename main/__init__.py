@@ -2,13 +2,21 @@
 
 import json
 from flask import Flask, request, jsonify
+# from flask.json import JSONEncoder
 from ext import db
 from res_data import RES_DATA
 from models.member import Member
 # from routers.api.image import IMAGE
 
+# class MyJSONEncoder(JSONEncoder):
+#     def default(self, obj):
+#         if isinstance(obj, list):
+#             return super(MyJSONEncoder, self).default(obj)
+#         return obj.__dict__
+
 APP = Flask(__name__)
 APP.config.from_object('config')
+# APP.json_encoder = MyJSONEncoder
 
 # APP.register_blueprint(IMAGE, url_prefix='/api/image')
 db.__init__(APP)
@@ -17,13 +25,15 @@ db.__init__(APP)
     # db.drop_all()
     # db.create_all()
 
+
 @APP.route('/member', methods=['GET'])
 def member_get_list():
-    memberlist = Member.query.all()
-    print 'memberlist'
-    # RES_DATA['data'] = memberlist
-    # return jsonify(json.loads(memberlist))
-    return 'memberlist'
+    memberlist = [{
+        'id': member.id,
+        'name': member.name
+    } for member in Member.query.all()]
+    RES_DATA['data'] = memberlist
+    return jsonify(RES_DATA)
 
 @APP.route('/member/add', methods=['POST'])
 def member_add():
