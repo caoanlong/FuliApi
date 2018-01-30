@@ -53,7 +53,8 @@ def category_info():
     id = request.args.get('id')
     category = Category.query.get(id)
     print dir(category)
-    return jsonify({'code': 0, 'msg': '成功', 'data': category})
+    return jsonify(category)
+    # return jsonify({'code': 0, 'msg': '成功', 'data': category})
 
 
 # 添加图片分类
