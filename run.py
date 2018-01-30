@@ -1,6 +1,6 @@
 # coding=utf-8
-
-from main import app
+from main import APP
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    
+    APP.run(host='0.0.0.0')
