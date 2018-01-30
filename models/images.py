@@ -17,7 +17,7 @@ class Image(db.Model):
     # category字段关联到Categorys表
     # category = db.relationship('Category', backref=db.backref('images', lazy='dynamic'))
 
-    def __init__(self, title, url, desc, read, like, category_id, create_time=None):
+    def __init__(self, title, url, desc, read=0, like=0, category_id, create_time=None):
         self.title = title
         self.url = url
         self.desc = desc
