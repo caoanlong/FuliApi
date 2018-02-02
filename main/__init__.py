@@ -2,27 +2,31 @@
 
 import json
 from flask import Flask, request, jsonify
-from flask.json import JSONEncoder
+# from flask.json import JSONEncoder
 from ext import db
 from models.member import Member
+from routers.api.type import TYPE
+from routers.api.category import CATEGORY
 from routers.api.image import IMAGE
 
-class MyJSONEncoder(JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, list):
-            return super(MyJSONEncoder, self).default(obj)
-        return obj.__dict__
+# class MyJSONEncoder(JSONEncoder):
+#     def default(self, obj):
+#         if isinstance(obj, list):
+#             return super(MyJSONEncoder, self).default(obj)
+#         return obj.__dict__
 
 APP = Flask(__name__)
 APP.config.from_object('config')
-APP.json_encoder = MyJSONEncoder
+# APP.json_encoder = MyJSONEncoder
 
+APP.register_blueprint(TYPE, url_prefix='/api/type')
+APP.register_blueprint(CATEGORY, url_prefix='/api/category')
 APP.register_blueprint(IMAGE, url_prefix='/api/image')
 db.__init__(APP)
 
-with APP.app_context():
-    db.drop_all()
-    db.create_all()
+# with APP.app_context():
+    # db.drop_all()
+    # db.create_all()
 
 @APP.route('/member', methods=['GET'])
 def member_get_list():
